@@ -19,7 +19,7 @@ public class Shevchenko implements Poem {
 		"Та соловейко не затих."};
 	
 	public Shevchenko(){}
-
+    
 	public void recite() {
 		for(int i = 0; i<LINES.length; i++){
 			System.out.println(LINES[i]);

@@ -1,5 +1,7 @@
 package com.mycompany.app;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Juggler implements Performer {
 	private int beanBags = 3;
 	public Juggler(){}

@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"  
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"> 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	
+	http://www.springframework.org/schema/aop   
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
+	> 
+	<aop:aspectj-autoproxy />  
+	<aop:config>  
+	  <aop:aspect id="myaspect" ref="greeter" >  
+	     <!-- @Before -->  
+	     <aop:pointcut id="pointCutBefore"   expression="execution(* com.mycompany.app.Instrumentalist.*(..))" />  
+	     <aop:before method="greet" pointcut-ref="pointCutBefore" />  
+	  </aop:aspect>  
+	</aop:config>  
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 	<bean id="duke" class="com.mycompany.app.Juggler" >
 		<constructor-arg value="15" />
@@ -45,4 +58,11 @@
 		</property>
 	</bean>
 	
+  
+	
+	<bean id="greeter" class="com.mycompany.app.Greeter"></bean>  
+    <bean id="logAspect" class="com.mycompany.app.GreeterAnnotation" />
+	          
+	
+		
 </beans>
